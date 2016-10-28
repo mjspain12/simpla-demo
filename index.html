@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>Simpla Demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://v2--simpla.netlify.com/simpla.js"></script>
+    <script>
+      const project = 'rJg5gOnO';
+      const server = 'https://api-beta-xb177olenlgv.netdna-ssl.com';
+      Simpla({
+        project,
+        elements: null,
+        hashTracking: false,
+        _authEndpoint: server,
+        _dataEndpoint: `${server}/projects/${project}/content`
+      });
+      </script>
+
+    <!-- Import Web Components polyfill -->
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <!-- Use shadow DOM if available -->
+    <script>
+      window.Polymer = { dom: 'shadow' };
+    </script>
+
+    <!-- Import component -->
+    <link rel="import" href="/bower_components/simpla-video/simpla-video.html">
+    <link rel="import" href="/bower_components/simpla-link/simpla-link.html">
+    <link rel="import" href="/bower_components/simpla-ol/simpla-ol.html">
+    <link rel="import" href="/bower_components/simpla-ul/simpla-ul.html">
+
+  </head>
+  <body unresolved>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Examples of simpla-links</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a uid="first.link" is="simpla-link">My favorite social media site</a></li>
+        <li><a uid="second.link" is="simpla-link">My favorite sports site</a></li>
+        <li><a uid="third.link" is="simpla-link">My favorite news site</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn" id="edit">edit</button></li>
+        <li><button class="btn btn-success" id="save">save</button></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div id="loginWrapper">
+            <h1>Simpla Login</h1>
+               <div class="form-group">
+                <label for="email">Email address</label>
+                <input class="form-control" id="email" type="email" placeholder="Email"/>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" id="password" type="password" placeholder="Password"/>
+              </div>
+              <button class="btn btn-primary" id="login">login</button>
+            </div>
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+
+            <h1> Examples of simpla-video </h1>
+
+            <h3> My favorite video </h3>
+            <simpla-video uid="one.vid"></simpla-video>
+            <hr>
+            <h3> My second favorite video </h3>
+            <simpla-video uid="two.vid"></simpla-video>
+            <hr>
+            <h3> My third favorite video </h3>
+            <simpla-video uid="three.vid"></simpla-video>
+            <hr>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+          <h1> Examples of simpla-ol </h1>
+          <h3> My favorite friends </h3>
+           <ol uid="first-ol" is="simpla-ol">
+              <li> first </li>
+              <li> second </li>
+              <li> third </li>
+          </ol>
+      <hr>
+      <h3> My favorite sports </h3>
+          <ol uid="second-ol" is="simpla-ol">
+              <li> first </li>
+              <li> second </li>
+              <li> third </li>
+          </ol>
+      <hr>
+      <h3> My favorite movies </h3>
+          <ol uid="third-ol" is="simpla-ol">
+              <li> first </li>
+              <li> second </li>
+              <li> third </li>
+          </ol>
+      <hr> 
+
+        </div>
+      </div>
+
+       <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+          <h1> Examples of simpla-ul </h1>
+            <h3> Things about me </h3>
+            <ul uid="first-ul" is="simpla-ul">
+                <li> first </li>
+                <li> second </li>
+                <li> third </li>
+            </ul>
+            <hr>
+            <h3> Things about me </h3>
+            <ul uid="second-ul" is="simpla-ul">
+                <li> first </li>
+                <li> second </li>
+                <li> third </li>
+            </ul>
+            <hr>
+            <h3> Things about me </h3>
+            <ul uid="third-ul" is="simpla-ul">
+                <li> first </li>
+                <li> second </li>
+                <li> third </li>
+            </ul>
+            <hr>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Manage the Simpla environment
+
+      const edit = document.getElementById('edit'),
+            save = document.getElementById('save'),
+            loginWrapper = document.getElementById('loginWrapper'),
+            login = document.getElementById('login');
+
+      let toggleEditButton = (editable) => {
+        edit.innerHTML = editable ? 'enter view mode' : 'enter edit mode';
+      };
+
+      Simpla.observeState('editable', toggleEditButton);
+      toggleEditButton(Simpla.getState().editable);
+
+      edit.addEventListener('click', () => {
+        Simpla.editable(!Simpla.getState().editable);
+      });
+
+      save.addEventListener('click', () => {
+        save.innerHTML = 'saving...';
+        Simpla.save()
+          .then(() => {
+            alert('Saved!');
+            save.innerHTML = 'save';
+          });
+      });
+
+      let authenticatedHandler = (authenticated) => {
+        loginWrapper.hidden = authenticated;
+        save.disabled = !authenticated;
+        edit.disabled = !authenticated; 
+      };
+
+      Simpla.observeState('authenticated', authenticatedHandler);
+      authenticatedHandler(Simpla.getState().authenticated);
+
+      login.addEventListener('click', () => {
+        Simpla.login({
+          email: document.getElementById('email').value,
+          password: document.getElementById('password').value
+        });
+      });
+    </script>
+
+  </body>
+</html>

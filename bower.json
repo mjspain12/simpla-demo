@@ -1,0 +1,24 @@
+{
+  "name": "demo",
+  "authors": [
+    "Michael Spain <mspa1382@uni.sydney.edu.au>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "simpla-link": "mspa1382/simpla-link",  
+    "simpla-ul": "romanidze2016/simpla-ul",
+    "simpla-ol": "rabbitohfanatic/simpla-ol",
+    "simpla-video": "mspa1382/simpla-video"
+  }
+}
